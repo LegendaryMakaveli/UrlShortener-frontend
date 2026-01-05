@@ -36,8 +36,11 @@ export const applicationAPi = createApi({
                 method: "POST",
                 body: longUrl
             })
-        })
+        }),
+        healthCheck: builder.query({
+            query: () => '/health',
+        }),
     }),
 })
 
-export const { useSignupMutation, useLoginMutation, useShortenUrlMutation } = applicationAPi;
+export const { useSignupMutation, useLoginMutation, useShortenUrlMutation, useHealthCheckQuery,} = applicationAPi;
