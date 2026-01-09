@@ -32,7 +32,7 @@ export const applicationAPi = createApi({
 
         shortenUrl: builder.mutation({
             query: (longUrl)=>({
-                url: "url/shortenUrl",
+                url: "/url/shortenUrl",
                 method: "POST",
                 body: longUrl
             })
