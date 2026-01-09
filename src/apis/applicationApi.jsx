@@ -5,10 +5,10 @@ const URL = import.meta.env.VITE_URL_SHORTNER_SYSTEM
 export const applicationAPi = createApi({
     reducerPath: "apis",
     baseQuery: fetchBaseQuery({baseUrl: URL,
-        prepareHeaders:(headers, {endpoint  }) => {
+        prepareHeaders:(headers) => {
             const token = localStorage.getItem('token');
-            if (token && endpoint !== "shortenUrl" && endpoint !== "healthCheck") {
-            headers.set("Authorization", `Bearer ${token}`);
+            if (token) {
+                headers.set("Authorization", `Bearer ${token}`);
     }
             return headers;
         }
@@ -37,10 +37,7 @@ export const applicationAPi = createApi({
                 body: longUrl
             })
         }),
-        healthCheck: builder.query({
-            query: () => '/health',
-        }),
     }),
 })
 
-export const { useSignupMutation, useLoginMutation, useShortenUrlMutation, useHealthCheckQuery,} = applicationAPi;
+export const { useSignupMutation, useLoginMutation, useShortenUrlMutation } = applicationAPi;
