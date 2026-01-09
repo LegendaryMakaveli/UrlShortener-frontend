@@ -100,7 +100,7 @@ const SignUp =()=> {
                     {isLoading ? "Signing up..." : "Sign Up"}
                 </button>
                 <p className={style.signupLink}>
-                    Already have an account? <Link to="/login">Login</Link>
+                    Already have an account? <Link to="/">Login</Link>
                 </p>
             </form>
         </>
