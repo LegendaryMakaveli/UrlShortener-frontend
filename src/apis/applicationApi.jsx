@@ -5,15 +5,13 @@ const URL = import.meta.env.VITE_URL_SHORTNER_SYSTEM
 export const applicationAPi = createApi({
     reducerPath: "apis",
     baseQuery: fetchBaseQuery({baseUrl: URL,
-        prepareHeaders:(headers, {endpoint}) => {
-            const publicEndpoints = ['signup', 'login', 'shortenUrl'];
-            if(!publicEndpoints.includes(endpoint)){
-                const token = localStorage.getItem('token');
-                if (token) {
-                    headers.set("Authorization", `Bearer ${token}`);
-    }
-                return headers;
+        prepareHeaders:(headers) => {
+            const token = localStorage.getItem('token');
+            console.log("token taken:", token);
+            if (token) {
+                headers.set("Authorization", `Bearer ${token}`);
             }
+            return headers;
         }
     }),
     endpoints:(builder)=>({
