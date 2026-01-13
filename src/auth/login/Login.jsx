@@ -2,7 +2,7 @@ import style from "../login/Login.module.css"
 import { useState } from "react"
 import {Link, useNavigate} from "react-router"
 import {useLoginMutation} from "../../apis/applicationApi"
-import toast, { Toaster } from "react-hot-toast";
+// import toast, { Toaster } from 'react-hot-toast';
 
 const Login = () => {
     const [login] = useLoginMutation();
@@ -18,7 +18,7 @@ const Login = () => {
         const {name, value} = e.target;
         setLogindata((prev) => ({...prev, [name]: value}));
     }
-    
+
     const submitHandle = async (e) => {
         e.preventDefault();
 
@@ -28,7 +28,7 @@ const Login = () => {
             const token = response.data.token;
 
             if (token) localStorage.setItem('token', token);
-            toast.success("Login successful!");
+            setLoginError({text: "Login successful!", type: "success"});
             navigate("/dashboardpage")
         }catch (error){
             const errorMessage = error?.data?.message || error?.message || "Login failed. Please try again.";

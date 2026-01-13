@@ -52,7 +52,7 @@ const Dashboard =()=> {
                     <div className={styles.logo}>🔗</div>
                     <h1 className={styles.title}>URL Shortener</h1>
                 </div>
-                <button className={styles.logoutBtn} onClick={() => {localStorage.removeItem("token");
+                <button className={styles.logoutBtn} onClick={() => {localStorage.clear();
                      window.location.href = "/";}}>
                      Logout
                 </button>
