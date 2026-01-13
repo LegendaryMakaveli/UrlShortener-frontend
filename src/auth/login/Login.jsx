@@ -23,16 +23,9 @@ const Login = () => {
         try{
             const response = await login(loginData).unwrap();
             console.log('Login API Response:', response);
-
             const token = response.data.token;
-            console.log('token from login:', token);
-            
-            if (token) localStorage.setItem('token', token);
-            console.log('Token saved to localStorage');
-            
-            const savedToken = localStorage.getItem('token');
-            console.log('Verified saved token:', savedToken);
 
+            if (token) localStorage.setItem('token', token);
             navigate("/dashboardpage")
         }catch (error){
             console.error("Login failed: ", error);
