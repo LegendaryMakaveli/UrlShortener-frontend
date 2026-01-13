@@ -24,8 +24,9 @@ const Dashboard =()=> {
       setShortenedUrl(`${import.meta.env.VITE_URL_SHORTNER_SYSTEM}/url/r/${shortCode}`);;
       setMessage({ text: "URL shortened successfully!", type: "success" });
     } catch (error) {
+      const errorMessage = error?.data?.message || error?.message ||"Failed to shorten URL. Please try again.";
       setMessage({
-        text: error.data?.message || "Failed to shorten URL. Please try again.",
+        text: errorMessage,
         type: "error",
       });
       console.log(error.data?.message);
