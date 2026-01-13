@@ -18,7 +18,7 @@ const Login = () => {
         const {name, value} = e.target;
         setLogindata((prev) => ({...prev, [name]: value}));
     }
-
+    
     const submitHandle = async (e) => {
         e.preventDefault();
 
@@ -28,11 +28,11 @@ const Login = () => {
             const token = response.data.token;
 
             if (token) localStorage.setItem('token', token);
-            setLoginError({text: "Login successful!", type: "success"});
+            toast.success("Login successful!");
             navigate("/dashboardpage")
         }catch (error){
-            const invalidCredentialsError = () => toast.error(error?.data?.message || error?.message || "Login failed. Please try again.");
-            setLoginError({text: invalidCredentialsError, type: "error"});
+            const errorMessage = error?.data?.message || error?.message || "Login failed. Please try again.";
+            setLoginError({text: errorMessage, type: "error"});
         }
     }
 
@@ -60,7 +60,6 @@ const Login = () => {
 
 
                     <button type="submit" className={style.loginButton}>Login</button>
-                    <Toaster />
                 </form>
                 
                 <p className={style.signupLink}>
