@@ -13,7 +13,7 @@ const SignUp =()=> {
         confirmPassword: ""
     })
 
-    const [signupError, setSignUpError] = useState({});
+    const [signupError, setSignUpError] = useState({ text: "", type: "" });
 
     const handleChange = (e) => {
         const {name, value} = e.target;

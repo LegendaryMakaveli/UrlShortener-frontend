@@ -11,7 +11,7 @@ const Login = () => {
         password: ""
     })
 
-    const [loginError, setLoginError] = useState("");
+    const [loginError, setLoginError] = useState({ text: "", type: "" });
 
     const handleChange = (e) => {
         const {name, value} = e.target;
