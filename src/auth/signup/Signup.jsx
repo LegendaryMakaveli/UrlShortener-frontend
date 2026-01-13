@@ -13,7 +13,7 @@ const SignUp =()=> {
         confirmPassword: ""
     })
 
-    const [signupError, setSignUpError] = useState({ text: "", type: "" });
+    const [signupError, setSignUpError] = useState({});
 
     const handleChange = (e) => {
         const {name, value} = e.target;
@@ -56,11 +56,7 @@ const SignUp =()=> {
             localStorage.setItem("email", formData.email)
             navigate("/dashboardpage");
         }catch (error) {
-            const errorMessage = error?.data?.message || error?.message ||"Sign Up failed. Please try again.";  
-            setSignUpError({
-                text: errorMessage,
-                type: "error",
-            });
+            setSignUpError({submit: error?.data?.message || "Sign Up fail"})
         }
     }
 

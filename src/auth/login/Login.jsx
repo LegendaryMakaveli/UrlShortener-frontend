@@ -11,7 +11,7 @@ const Login = () => {
         password: ""
     })
 
-    const [loginError, setLoginError] = useState({ text: "", type: "" });
+    const [loginError, setLoginError] = useState("");
 
     const handleChange = (e) => {
         const {name, value} = e.target;
@@ -28,12 +28,8 @@ const Login = () => {
             if (token) localStorage.setItem('token', token);
             navigate("/dashboardpage")
         }catch (error){
-            const errorMessage = error?.data?.message || error?.message ||"Login failed. Please try again.";
-
-            setLoginError({
-                text: errorMessage,
-                type: "error",
-            });
+            console.error("Login failed: ", error);
+            setLoginError(error.data?.message);
         }
     }
 
