@@ -28,6 +28,8 @@ const Login = () => {
                 localStorage.setItem('token', response.token);
             }
 
+            console.log("token from login:", localStorage.getItem('token'));
+
             navigate("/dashboardpage")
         }catch (error){
             console.error("Login failed: ", error);

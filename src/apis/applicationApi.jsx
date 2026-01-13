@@ -7,7 +7,6 @@ export const applicationAPi = createApi({
     baseQuery: fetchBaseQuery({baseUrl: URL,
         prepareHeaders:(headers) => {
             const token = localStorage.getItem('token');
-            console.log("token taken:", token);
             if (token) {
                 headers.set("Authorization", `Bearer ${token}`);
             }
@@ -28,7 +27,15 @@ export const applicationAPi = createApi({
                 url: "/auth/login",
                 method: "POST",
                 body: data
-            })
+            }),
+            async onQueryStarted(arg, { queryFulfilled }) {
+        try {
+            const { data } = await queryFulfilled;
+            console.log('Login API Response:', data);
+        } catch (error) {
+            console.error('Login error:', error);
+        }
+    }
         }),
 
         shortenUrl: builder.mutation({
