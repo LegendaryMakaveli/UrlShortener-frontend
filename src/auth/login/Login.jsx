@@ -22,7 +22,11 @@ const Login = () => {
         e.preventDefault();
         try{
             const response = await login(loginData).unwrap();
-            localStorage.setItem("token", response.data.token);
+            if (response.data?.token) {
+                localStorage.setItem('token', response.data.token);
+            } else if (response.token) {
+                localStorage.setItem('token', response.token);
+            }
 
             navigate("/dashboardpage")
         }catch (error){
