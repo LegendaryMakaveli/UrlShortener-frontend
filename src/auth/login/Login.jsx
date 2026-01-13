@@ -2,6 +2,7 @@ import style from "../login/Login.module.css"
 import { useState } from "react"
 import {Link, useNavigate} from "react-router"
 import {useLoginMutation} from "../../apis/applicationApi"
+import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
     const [login] = useLoginMutation();
@@ -30,8 +31,8 @@ const Login = () => {
             setLoginError({text: "Login successful!", type: "success"});
             navigate("/dashboardpage")
         }catch (error){
-            const errorMessage = error?.data?.message || error?.message || "Login failed. Please try again.";
-            setLoginError({text: errorMessage, type: "error"});
+            const invalidCredentialsError = () => toast.error(error?.data?.message || error?.message || "Login failed. Please try again.");
+            setLoginError({text: invalidCredentialsError, type: "error"});
         }
     }
 
@@ -59,6 +60,7 @@ const Login = () => {
 
 
                     <button type="submit" className={style.loginButton}>Login</button>
+                    <Toaster />
                 </form>
                 
                 <p className={style.signupLink}>
