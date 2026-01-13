@@ -11,7 +11,7 @@ const Login = () => {
         password: ""
     })
 
-    const [loginError, setLoginError] = useState("");
+    const [loginError, setLoginError] = useState({ text: "", type: "" });
 
     const handleChange = (e) => {
         const {name, value} = e.target;
@@ -20,16 +20,18 @@ const Login = () => {
 
     const submitHandle = async (e) => {
         e.preventDefault();
+
         try{
             const response = await login(loginData).unwrap();
             console.log('Login API Response:', response);
             const token = response.data.token;
 
             if (token) localStorage.setItem('token', token);
+            setLoginError({text: "Login successful!", type: "success"});
             navigate("/dashboardpage")
         }catch (error){
-            console.error("Login failed: ", error);
-            setLoginError(error.data?.message);
+            const errorMessage = error?.data?.loginError || error?.loginError || "Login failed. Please try again.";
+            setLoginError({text: errorMessage, type: "error"});
         }
     }
 
@@ -41,7 +43,7 @@ const Login = () => {
 
                 <form onSubmit={submitHandle} className={style.loginForm}>
                     <h1>Login</h1>
-                    {loginError && <p className={style.errorMessage}>{loginError}</p>}
+                    {loginError.text && <p className={style.errorMessage}>{loginError}</p>}
 
 
                     <div className={style.loginInput}>
