@@ -30,7 +30,7 @@ const Login = () => {
             setLoginError({text: "Login successful!", type: "success"});
             navigate("/dashboardpage")
         }catch (error){
-            const errorMessage = error?.data?.loginError || error?.loginError || "Login failed. Please try again.";
+            const errorMessage = error?.data?.message || error?.message || "Login failed. Please try again.";
             setLoginError({text: errorMessage, type: "error"});
         }
     }
