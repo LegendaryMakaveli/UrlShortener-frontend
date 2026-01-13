@@ -28,6 +28,7 @@ const Login = () => {
             const token = response.data.token;
 
             if (token) localStorage.setItem('token', token);
+            localStorage.setItem('email', loginData.email);
             setLoginError({text: "Login successful!", type: "success"});
             navigate("/dashboardpage")
         }catch (error){
