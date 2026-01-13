@@ -28,6 +28,7 @@ const Dashboard =()=> {
         text: error.data?.message || "Failed to shorten URL. Please try again.",
         type: "error",
       });
+      console.log(message);
     }
   };
 
