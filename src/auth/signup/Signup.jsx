@@ -56,7 +56,11 @@ const SignUp =()=> {
             localStorage.setItem("email", formData.email)
             navigate("/dashboardpage");
         }catch (error) {
-            setSignUpError({submit: error?.data?.message || "Sign Up fail"})
+            const errorMessage = error?.data?.message || error?.message ||"Sign Up failed. Please try again.";  
+            setSignUpError({
+                text: errorMessage,
+                type: "error",
+            });
         }
     }
 

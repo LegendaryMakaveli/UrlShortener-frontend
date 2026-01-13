@@ -29,7 +29,6 @@ const Dashboard =()=> {
         text: errorMessage,
         type: "error",
       });
-      console.log(error.data?.message);
     }
   };
 

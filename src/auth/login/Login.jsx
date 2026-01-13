@@ -28,8 +28,12 @@ const Login = () => {
             if (token) localStorage.setItem('token', token);
             navigate("/dashboardpage")
         }catch (error){
-            console.error("Login failed: ", error);
-            setLoginError(error.data?.message);
+            const errorMessage = error?.data?.message || error?.message ||"Login failed. Please try again.";
+
+            setLoginError({
+                text: errorMessage,
+                type: "error",
+            });
         }
     }
 
