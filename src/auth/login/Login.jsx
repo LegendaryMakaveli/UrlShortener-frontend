@@ -22,13 +22,16 @@ const Login = () => {
         e.preventDefault();
         try{
             const response = await login(loginData).unwrap();
-            if (response.data?.token) {
-                localStorage.setItem('token', response.data.token);
-            } else if (response.token) {
-                localStorage.setItem('token', response.token);
-            }
+            console.log('Login API Response:', response);
 
-            console.log("token from login:", localStorage.getItem('token'));
+            const token = response.data.token;
+            console.log('token from login:', token);
+            
+            if (token) localStorage.setItem('token', token);
+            console.log('Token saved to localStorage');
+            
+            const savedToken = localStorage.getItem('token');
+            console.log('Verified saved token:', savedToken);
 
             navigate("/dashboardpage")
         }catch (error){

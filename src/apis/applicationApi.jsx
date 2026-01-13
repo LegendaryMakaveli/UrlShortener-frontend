@@ -28,14 +28,6 @@ export const applicationAPi = createApi({
                 method: "POST",
                 body: data
             }),
-            async onQueryStarted(arg, { queryFulfilled }) {
-        try {
-            const { data } = await queryFulfilled;
-            console.log('Login API Response:', data);
-        } catch (error) {
-            console.error('Login error:', error);
-        }
-    }
         }),
 
         shortenUrl: builder.mutation({
