@@ -54,7 +54,6 @@ const SignUp =()=> {
             const result = await signup(signupData).unwrap();
             console.log(result);
             localStorage.setItem("email", formData.email)
-            localStorage.setItem("token", result.data.token);
             navigate("/dashboardpage");
         }catch (error) {
             setSignUpError({submit: error?.data?.message || "Sign Up fail"})
