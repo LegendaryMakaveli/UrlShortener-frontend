@@ -43,7 +43,7 @@ const Login = () => {
 
                 <form onSubmit={submitHandle} className={style.loginForm}>
                     <h1>Login</h1>
-                    {loginError.text && <p className={style.errorMessage}>{loginError}</p>}
+                    {loginError.text && <p className={style.errorMessage}>{loginError.text}</p>}
 
 
                     <div className={style.loginInput}>
